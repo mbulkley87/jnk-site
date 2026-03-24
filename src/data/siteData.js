@@ -121,9 +121,9 @@ export const highlights = [
 ];
 
 export const contactInfo = {
-  phoneDisplay: '(301) 000-0000',
-  phoneHref: 'tel:+13010000000',
-  emailDisplay: 'jace@jnk-contracting.com',
-  emailHref: 'mailto:jace@jnk-contracting.com',
+  phoneDisplay: '(304) 698-6647',
+  phoneHref: 'tel:+13046986647',
+  emailDisplay: 'info@jnk-contracting.com',
+  emailHref: 'mailto:info@jnk-contracting.com',
   serviceArea: 'Deep Creek Lake, Garrett County, and surrounding areas',
 };
