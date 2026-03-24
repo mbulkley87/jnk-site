@@ -1,5 +1,18 @@
 import { useState } from 'react';
-import { Menu, X, Phone, Mail, MapPin, Hammer, Trees, Mountain, Flame } from 'lucide-react';
+import {
+  Menu,
+  X,
+  Phone,
+  Mail,
+  MapPin,
+  Hammer,
+  Trees,
+  Mountain,
+  Flame,
+  ShieldCheck,
+  House,
+  ChevronRight,
+} from 'lucide-react';
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -15,62 +28,90 @@ export default function App() {
   const services = [
     {
       title: 'Deck Construction & Repair',
-      text: 'New builds, structural repairs, resurfacing, and outdoor upgrades designed for cabins, vacation homes, and mountain properties.',
+      text: 'New deck builds, repairs, resurfacing, stairs, railings, and structural improvements for cabins, vacation homes, and residential properties.',
       icon: Hammer,
     },
     {
       title: 'Retaining Walls & Grading',
-      text: 'Slope management, drainage-minded grading, and retaining wall work built for the steep terrain common around Deep Creek.',
+      text: 'Slope-focused grading, drainage-minded site work, and retaining wall solutions built for the terrain common around Deep Creek and Garrett County.',
       icon: Mountain,
     },
     {
       title: 'Excavation & Site Prep',
-      text: 'Clearing, groundwork, access improvements, and site preparation for property upgrades and outdoor construction projects.',
+      text: 'Clearing, groundwork, access improvements, prep for outdoor projects, and practical site solutions that set the job up the right way.',
       icon: Trees,
     },
     {
       title: 'Fire Pits & Outdoor Living',
-      text: 'Patios, gathering areas, hardscape features, and outdoor spaces that feel warm, finished, and built to last.',
+      text: 'Outdoor gathering spaces, paver pads, hardscape features, and cabin-friendly improvements that make mountain properties more usable and more inviting.',
       icon: Flame,
+    },
+  ];
+
+  const highlights = [
+    {
+      title: 'Built for mountain properties',
+      text: 'Experience with the slopes, weather, grades, drainage, and outdoor conditions that make Deep Creek projects different.',
+      icon: Mountain,
+    },
+    {
+      title: 'Residential-first approach',
+      text: 'Work that feels right for cabins, vacation homes, and personal residences - not generic commercial construction.',
+      icon: House,
+    },
+    {
+      title: 'Clear communication',
+      text: 'Straightforward quotes, dependable scheduling, and practical recommendations homeowners can feel good about.',
+      icon: ShieldCheck,
     },
   ];
 
   const projects = [
     {
       src: 'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1600&q=80',
-      title: 'Featured Mountain Home Project',
-      description: 'Replace this first image with the strongest Castle Creek Lodge exterior or outdoor project shot.',
+      title: 'Mountain Home Exterior Improvements',
+      description:
+        'Use your strongest real photo here - ideally a Deep Creek property shot that immediately communicates cabin, craftsmanship, and curb appeal.',
     },
     {
       src: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80',
-      title: 'Cabin-Style Decks & Outdoor Spaces',
-      description: 'Use warm residential photos that feel rustic, local, and built for mountain living.',
+      title: 'Decks, Stairs & Outdoor Access',
+      description:
+        'Feature warm, residential photos with timber, railings, steps, and finished outdoor spaces rather than generic stock construction imagery.',
     },
     {
       src: 'https://images.unsplash.com/photo-1448630360428-65456885c650?auto=format&fit=crop&w=1600&q=80',
-      title: 'Grading, Access, and Property Improvements',
-      description: 'Show terrain work, outdoor upgrades, and clean finished craftsmanship.',
+      title: 'Grading, Walls & Site Work',
+      description:
+        'Show terrain-focused work, clean finished grades, and practical site improvements that feel relevant to local mountain properties.',
     },
   ];
+
+  const phoneDisplay = '(301) 000-0000';
+  const phoneHref = 'tel:+13010000000';
+  const emailDisplay = 'jace@jnk-contracting.com';
+  const emailHref = 'mailto:jace@jnk-contracting.com';
 
   return (
     <>
       <style>{`
         :root {
-          --bg: #f6f2ea;
+          --bg: #f6f1e8;
           --surface: #ffffff;
           --surface-soft: #f1eadf;
-          --surface-muted: #ebe3d4;
-          --text: #231f1a;
-          --text-soft: #665f55;
-          --border: #ddd3c2;
-          --brand: #6f5437;
-          --brand-dark: #5c452d;
-          --accent: #ccb174;
-          --shadow: 0 18px 45px rgba(35, 31, 26, 0.08);
-          --radius-xl: 32px;
-          --radius-lg: 24px;
-          --radius-md: 18px;
+          --surface-alt: #ebe1d1;
+          --text: #221d17;
+          --text-soft: #655d52;
+          --border: #ddd0bc;
+          --brand: #6a4f34;
+          --brand-dark: #533d28;
+          --accent: #ccb07a;
+          --accent-dark: #b89962;
+          --shadow: 0 20px 50px rgba(34, 29, 23, 0.08);
+          --shadow-soft: 0 10px 25px rgba(34, 29, 23, 0.06);
+          --radius-xl: 30px;
+          --radius-lg: 22px;
+          --radius-md: 16px;
           --container: 1200px;
         }
 
@@ -87,6 +128,8 @@ export default function App() {
           font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
           background: var(--bg);
           color: var(--text);
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
         }
 
         a {
@@ -97,6 +140,10 @@ export default function App() {
         img {
           display: block;
           max-width: 100%;
+        }
+
+        button {
+          font: inherit;
         }
 
         .site-shell {
@@ -112,10 +159,10 @@ export default function App() {
         .topbar {
           position: sticky;
           top: 0;
-          z-index: 50;
-          background: rgba(246, 242, 234, 0.94);
-          backdrop-filter: blur(12px);
-          border-bottom: 1px solid rgba(111, 84, 55, 0.12);
+          z-index: 60;
+          background: rgba(246, 241, 232, 0.94);
+          backdrop-filter: blur(14px);
+          border-bottom: 1px solid rgba(106, 79, 52, 0.12);
         }
 
         .topbar-inner {
@@ -123,7 +170,7 @@ export default function App() {
           align-items: center;
           justify-content: space-between;
           gap: 20px;
-          min-height: 84px;
+          min-height: 82px;
         }
 
         .brand {
@@ -134,24 +181,28 @@ export default function App() {
         }
 
         .brand-mark {
-          width: 46px;
-          height: 46px;
+          width: 48px;
+          height: 48px;
           border-radius: 999px;
           display: flex;
           align-items: center;
           justify-content: center;
           background: var(--brand);
           color: white;
-          box-shadow: 0 10px 25px rgba(111, 84, 55, 0.18);
+          box-shadow: 0 10px 24px rgba(106, 79, 52, 0.22);
           flex-shrink: 0;
+        }
+
+        .brand-copy {
+          min-width: 0;
         }
 
         .brand-title {
           margin: 0;
-          font-size: 0.92rem;
-          letter-spacing: 0.22em;
+          font-size: 0.9rem;
+          font-weight: 800;
+          letter-spacing: 0.2em;
           text-transform: uppercase;
-          font-weight: 700;
           color: var(--brand);
         }
 
@@ -165,24 +216,42 @@ export default function App() {
           display: flex;
           align-items: center;
           gap: 28px;
-          flex-wrap: wrap;
         }
 
         .nav-link {
-          font-size: 0.98rem;
+          position: relative;
+          font-size: 0.97rem;
           font-weight: 600;
-          color: #4e463e;
+          color: #4c443b;
+          padding: 6px 0;
           transition: color 0.2s ease;
+        }
+
+        .nav-link::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: -2px;
+          width: 100%;
+          height: 2px;
+          background: var(--brand);
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.2s ease;
         }
 
         .nav-link:hover {
           color: var(--brand);
         }
 
+        .nav-link:hover::after {
+          transform: scaleX(1);
+        }
+
         .quote-button,
         .hero-primary,
         .hero-secondary,
-        .band-button,
+        .section-button,
         .contact-primary,
         .contact-secondary {
           display: inline-flex;
@@ -191,24 +260,23 @@ export default function App() {
           gap: 10px;
           border: none;
           cursor: pointer;
-          font: inherit;
           transition: all 0.2s ease;
         }
 
         .quote-button {
-          border-radius: 999px;
-          border: 1px solid var(--brand);
           padding: 13px 22px;
-          color: var(--brand);
-          background: transparent;
+          border-radius: 999px;
+          background: var(--brand);
+          color: white;
           font-weight: 700;
           white-space: nowrap;
+          box-shadow: var(--shadow-soft);
         }
 
         .quote-button:hover,
-        .contact-secondary:hover {
-          background: var(--brand);
-          color: white;
+        .contact-primary:hover {
+          background: var(--brand-dark);
+          transform: translateY(-1px);
         }
 
         .mobile-toggle {
@@ -240,6 +308,7 @@ export default function App() {
           border-radius: 16px;
           font-weight: 600;
           color: #4e463e;
+          background: transparent;
         }
 
         .mobile-link:hover {
@@ -258,8 +327,8 @@ export default function App() {
 
         .hero {
           position: relative;
-          background: #221d17;
           overflow: hidden;
+          background: #1f1913;
         }
 
         .hero-bg,
@@ -273,21 +342,26 @@ export default function App() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          opacity: 0.5;
+          opacity: 0.54;
         }
 
         .hero-overlay {
-          background: rgba(20, 16, 12, 0.45);
+          background: rgba(20, 15, 10, 0.42);
         }
 
         .hero-gradient {
-          background: linear-gradient(90deg, rgba(20,16,12,0.92) 0%, rgba(20,16,12,0.70) 50%, rgba(20,16,12,0.28) 100%);
+          background: linear-gradient(
+            90deg,
+            rgba(20, 15, 10, 0.92) 0%,
+            rgba(20, 15, 10, 0.72) 48%,
+            rgba(20, 15, 10, 0.25) 100%
+          );
         }
 
         .hero-content {
           position: relative;
           z-index: 1;
-          padding: 110px 0 130px;
+          padding: 120px 0 132px;
         }
 
         .hero-copy {
@@ -295,33 +369,36 @@ export default function App() {
         }
 
         .eyebrow {
-          display: inline-block;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
           margin-bottom: 22px;
           padding: 10px 16px;
           border-radius: 999px;
           background: rgba(255, 255, 255, 0.12);
           color: #f7efe1;
           text-transform: uppercase;
-          letter-spacing: 0.2em;
-          font-size: 0.78rem;
-          font-weight: 700;
+          letter-spacing: 0.18em;
+          font-size: 0.76rem;
+          font-weight: 800;
         }
 
         .hero h1 {
           margin: 0;
-          font-size: clamp(2.7rem, 5vw, 4.8rem);
-          line-height: 1.06;
+          font-size: clamp(2.8rem, 5vw, 5rem);
+          line-height: 1.04;
           color: white;
-          font-weight: 700;
-          letter-spacing: -0.03em;
+          letter-spacing: -0.04em;
+          font-weight: 800;
+          max-width: 820px;
         }
 
         .hero p {
           margin: 22px 0 0;
-          max-width: 700px;
-          font-size: 1.15rem;
-          line-height: 1.8;
-          color: rgba(255,255,255,0.88);
+          max-width: 720px;
+          font-size: 1.12rem;
+          line-height: 1.82;
+          color: rgba(255, 255, 255, 0.88);
         }
 
         .hero-actions {
@@ -333,59 +410,66 @@ export default function App() {
 
         .hero-primary,
         .hero-secondary,
-        .band-button,
+        .section-button,
         .contact-primary,
         .contact-secondary {
-          padding: 15px 26px;
+          padding: 15px 24px;
           border-radius: 999px;
           font-weight: 700;
         }
 
         .hero-primary,
-        .band-button {
+        .section-button {
           background: var(--accent);
-          color: #20180f;
+          color: #20170f;
         }
 
         .hero-primary:hover,
-        .band-button:hover {
+        .section-button:hover {
+          background: var(--accent-dark);
           transform: translateY(-1px);
-          background: #d6bc82;
         }
 
         .hero-secondary {
-          border: 1px solid rgba(255,255,255,0.3);
-          color: white;
           background: transparent;
+          color: white;
+          border: 1px solid rgba(255, 255, 255, 0.28);
         }
 
         .hero-secondary:hover {
-          background: rgba(255,255,255,0.1);
+          background: rgba(255, 255, 255, 0.1);
         }
 
         .intro-band {
-          background: #d7c182;
+          background: #d7c28b;
+          padding: 70px 0;
           text-align: center;
-          padding: 68px 0;
         }
 
         .intro-band h2 {
           margin: 0;
           font-size: clamp(2rem, 3vw, 3rem);
-          line-height: 1.2;
-          font-weight: 600;
+          line-height: 1.18;
+          font-weight: 700;
+          color: #241b12;
         }
 
         .intro-band p {
-          max-width: 900px;
+          max-width: 880px;
           margin: 18px auto 0;
-          font-size: 1.12rem;
-          line-height: 1.8;
-          color: #4f473d;
+          font-size: 1.08rem;
+          line-height: 1.82;
+          color: #4f463c;
+        }
+
+        .intro-band-actions {
+          margin-top: 28px;
+          display: flex;
+          justify-content: center;
         }
 
         .section {
-          padding: 88px 0;
+          padding: 90px 0;
         }
 
         .section-white {
@@ -393,7 +477,7 @@ export default function App() {
         }
 
         .section-soft {
-          background: #f1ece3;
+          background: #f2ece2;
         }
 
         .section-header {
@@ -405,23 +489,23 @@ export default function App() {
           margin: 0 0 12px;
           text-transform: uppercase;
           letter-spacing: 0.22em;
-          font-size: 0.82rem;
-          font-weight: 700;
+          font-size: 0.8rem;
+          font-weight: 800;
           color: var(--brand);
         }
 
         .section-title {
           margin: 0;
           font-size: clamp(2rem, 3vw, 3.2rem);
-          line-height: 1.15;
-          font-weight: 600;
+          line-height: 1.14;
+          font-weight: 750;
           color: var(--text);
         }
 
         .section-text {
           margin: 18px 0 0;
-          font-size: 1.06rem;
-          line-height: 1.9;
+          font-size: 1.04rem;
+          line-height: 1.86;
           color: var(--text-soft);
         }
 
@@ -436,20 +520,20 @@ export default function App() {
         .about-card,
         .contact-panel,
         .contact-item,
-        .about-mini {
+        .highlight-card {
           box-shadow: var(--shadow);
         }
 
         .service-card {
-          background: #f8f5ee;
-          border: 1px solid #e4dccd;
+          background: #f8f4ec;
+          border: 1px solid #e5dbcb;
           border-radius: var(--radius-xl);
           padding: 28px;
         }
 
         .service-icon {
-          width: 52px;
-          height: 52px;
+          width: 54px;
+          height: 54px;
           border-radius: 18px;
           display: flex;
           align-items: center;
@@ -461,18 +545,18 @@ export default function App() {
 
         .service-card h3,
         .project-card h3,
-        .about-mini h3 {
+        .highlight-card h3 {
           margin: 0;
-          font-size: 1.28rem;
+          font-size: 1.25rem;
           line-height: 1.3;
         }
 
         .service-card p,
         .project-card p,
         .about-card p,
-        .about-mini p,
         .contact-panel p,
-        .contact-item p {
+        .contact-item p,
+        .highlight-card p {
           margin: 14px 0 0;
           color: var(--text-soft);
           line-height: 1.82;
@@ -480,7 +564,7 @@ export default function App() {
 
         .projects-layout {
           display: grid;
-          grid-template-columns: 1.28fr 0.72fr;
+          grid-template-columns: 1.26fr 0.74fr;
           gap: 24px;
           align-items: start;
         }
@@ -497,11 +581,11 @@ export default function App() {
         }
 
         .project-card.featured img {
-          height: 430px;
+          height: 450px;
         }
 
         .project-card.secondary img {
-          height: 230px;
+          height: 235px;
         }
 
         .project-card img {
@@ -515,32 +599,44 @@ export default function App() {
 
         .two-column {
           display: grid;
-          grid-template-columns: 1fr 0.96fr;
+          grid-template-columns: 1.02fr 0.98fr;
           gap: 28px;
         }
 
         .about-card {
-          background: #f8f5ee;
+          background: #f8f4ec;
           border-radius: var(--radius-xl);
           padding: 34px;
         }
 
-        .about-grid {
+        .highlights-grid {
           display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
+          grid-template-columns: repeat(3, minmax(0, 1fr));
           gap: 18px;
           margin-top: 28px;
         }
 
-        .about-mini {
+        .highlight-card {
           background: white;
-          border: 1px solid #e4dccd;
+          border: 1px solid #e5dbcb;
           border-radius: var(--radius-lg);
           padding: 22px;
         }
 
+        .highlight-icon {
+          width: 46px;
+          height: 46px;
+          border-radius: 14px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          background: #f1e6d3;
+          color: var(--brand);
+          margin-bottom: 14px;
+        }
+
         .contact-panel {
-          background: #f2e8d7;
+          background: #f0e4d2;
           border-radius: var(--radius-xl);
           padding: 34px;
         }
@@ -563,6 +659,7 @@ export default function App() {
         .contact-item strong {
           display: block;
           margin-bottom: 4px;
+          color: var(--text);
         }
 
         .contact-icon {
@@ -583,23 +680,52 @@ export default function App() {
           color: white;
         }
 
-        .contact-primary:hover {
-          background: var(--brand-dark);
-        }
-
         .contact-secondary {
           background: transparent;
           color: var(--brand);
           border: 1px solid var(--brand);
         }
 
-        @media (max-width: 1100px) {
+        .contact-secondary:hover {
+          background: var(--brand);
+          color: white;
+        }
+
+        .footer {
+          background: #241b12;
+          color: rgba(255, 255, 255, 0.82);
+          padding: 26px 0;
+        }
+
+        .footer-inner {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 16px;
+          flex-wrap: wrap;
+        }
+
+        .footer p {
+          margin: 0;
+          font-size: 0.95rem;
+        }
+
+        .footer a {
+          color: white;
+          font-weight: 600;
+        }
+
+        @media (max-width: 1150px) {
           .services-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
           }
 
           .projects-layout,
           .two-column {
+            grid-template-columns: 1fr;
+          }
+
+          .highlights-grid {
             grid-template-columns: 1fr;
           }
         }
@@ -619,17 +745,16 @@ export default function App() {
           }
 
           .hero-content {
-            padding: 86px 0 96px;
+            padding: 88px 0 96px;
           }
 
           .hero h1 {
-            font-size: clamp(2.2rem, 10vw, 3.4rem);
+            font-size: clamp(2.2rem, 10vw, 3.6rem);
           }
 
           .hero p,
           .intro-band p,
-          .section-text,
-          .about-card p {
+          .section-text {
             font-size: 1rem;
           }
         }
@@ -659,7 +784,7 @@ export default function App() {
 
           .hero-primary,
           .hero-secondary,
-          .band-button,
+          .section-button,
           .contact-primary,
           .contact-secondary,
           .quote-button,
@@ -668,20 +793,19 @@ export default function App() {
           }
 
           .intro-band {
-            padding: 52px 0;
+            padding: 54px 0;
           }
 
           .section {
-            padding: 68px 0;
+            padding: 70px 0;
           }
 
-          .services-grid,
-          .about-grid {
+          .services-grid {
             grid-template-columns: 1fr;
           }
 
           .project-card.featured img {
-            height: 300px;
+            height: 310px;
           }
 
           .project-card.secondary img {
@@ -694,6 +818,11 @@ export default function App() {
           .contact-panel {
             padding: 22px;
           }
+
+          .footer-inner {
+            flex-direction: column;
+            align-items: flex-start;
+          }
         }
       `}</style>
 
@@ -704,13 +833,13 @@ export default function App() {
               <div className="brand-mark">
                 <Hammer size={18} />
               </div>
-              <div>
+              <div className="brand-copy">
                 <p className="brand-title">JNK Contracting</p>
-                <p className="brand-subtitle">Deep Creek area contractor</p>
+                <p className="brand-subtitle">Deep Creek and Garrett County contractor</p>
               </div>
             </a>
 
-            <nav className="nav-links">
+            <nav className="nav-links" aria-label="Main navigation">
               {navLinks.map((link) => (
                 <a key={link.label} href={link.href} className="nav-link">
                   {link.label}
@@ -719,7 +848,7 @@ export default function App() {
             </nav>
 
             <div className="desktop-cta">
-              <a href="tel:+13010000000" className="quote-button">
+              <a href={phoneHref} className="quote-button">
                 <Phone size={16} />
                 Call for a Quote
               </a>
@@ -730,6 +859,7 @@ export default function App() {
               className="mobile-toggle"
               onClick={() => setMenuOpen((open) => !open)}
               aria-label="Toggle navigation"
+              aria-expanded={menuOpen}
             >
               {menuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
@@ -748,7 +878,7 @@ export default function App() {
                     {link.label}
                   </a>
                 ))}
-                <a href="tel:+13010000000" className="mobile-cta" onClick={() => setMenuOpen(false)}>
+                <a href={phoneHref} className="mobile-cta" onClick={() => setMenuOpen(false)}>
                   <Phone size={16} />
                   Call for a Quote
                 </a>
@@ -759,20 +889,30 @@ export default function App() {
 
         <main id="home">
           <section className="hero">
-            <img className="hero-bg" src={projects[0].src} alt="Mountain cabin project" />
+            <img className="hero-bg" src={projects[0].src} alt="Mountain home exterior" />
             <div className="hero-overlay" />
             <div className="hero-gradient" />
 
             <div className="container hero-content">
               <div className="hero-copy">
-                <div className="eyebrow">Quality work for cabins, vacation homes, and mountain properties</div>
-                <h1>Building trust with quality work around Deep Creek.</h1>
+                <div className="eyebrow">
+                  Residential contractor for cabins, homes, and outdoor projects
+                </div>
+                <h1>Quality outdoor construction for Deep Creek and Garrett County homes.</h1>
                 <p>
-                  JNK Contracting delivers decks, grading, retaining walls, excavation, and outdoor living improvements with the kind of craftsmanship local homeowners want to feel confident hiring.
+                  JNK Contracting specializes in decks, retaining walls, grading, excavation,
+                  fire pits, and outdoor property improvements built for mountain terrain and
+                  residential living.
                 </p>
+
                 <div className="hero-actions">
-                  <a href="#projects" className="hero-primary">View Recent Work</a>
-                  <a href="#contact" className="hero-secondary">Get a Free Estimate</a>
+                  <a href="#projects" className="hero-primary">
+                    View Recent Work
+                    <ChevronRight size={16} />
+                  </a>
+                  <a href="#contact" className="hero-secondary">
+                    Get a Free Estimate
+                  </a>
                 </div>
               </div>
             </div>
@@ -780,11 +920,17 @@ export default function App() {
 
           <section className="intro-band">
             <div className="container">
-              <h2>Professional outdoor construction with a residential, mountain-home focus</h2>
+              <h2>Built for the way mountain properties actually live and age</h2>
               <p>
-                Deep Creek properties need more than generic contractor work - they need solutions built for slopes, weather, timber, stone, decks, and outdoor gathering spaces.
+                Around Deep Creek, outdoor work needs to hold up to slope, water, weather,
+                timber, and year-round use. JNK Contracting focuses on practical, well-built
+                residential improvements that feel right for cabins, vacation homes, and local properties.
               </p>
-              <a href="#services" className="band-button">Explore Services</a>
+              <div className="intro-band-actions">
+                <a href="#services" className="section-button">
+                  Explore Services
+                </a>
+              </div>
             </div>
           </section>
 
@@ -792,9 +938,11 @@ export default function App() {
             <div className="container">
               <div className="section-header">
                 <p className="section-kicker">Services</p>
-                <h2 className="section-title">What JNK Contracting does best</h2>
+                <h2 className="section-title">Outdoor construction work homeowners actually need</h2>
                 <p className="section-text">
-                  Keep this section clean and straightforward. Homeowners want to quickly understand the kind of work you do and whether you look like the right fit for their property.
+                  From deck work and site prep to grading, retaining walls, and fire pit areas,
+                  JNK Contracting focuses on the kinds of residential projects that improve how a
+                  property looks, functions, and holds up over time.
                 </p>
               </div>
 
@@ -819,9 +967,11 @@ export default function App() {
             <div className="container">
               <div className="section-header">
                 <p className="section-kicker">Recent Work</p>
-                <h2 className="section-title">Residential cabin-style visuals that feel local and credible</h2>
+                <h2 className="section-title">Show the kind of work local homeowners want to hire</h2>
                 <p className="section-text">
-                  Use real project photos here as soon as possible. Lead with Castle Creek Lodge if that is the strongest visual. Avoid generic commercial imagery.
+                  The biggest upgrade you can make from here is replacing stock photos with real
+                  Deep Creek-area project images. Prioritize finished residential work, strong exterior
+                  shots, deck photos, grading work, steps, retaining walls, and fire pit spaces.
                 </p>
               </div>
 
@@ -852,58 +1002,70 @@ export default function App() {
           <section id="about" className="section section-white">
             <div className="container two-column">
               <div className="about-card">
-                <p className="section-kicker">About</p>
-                <h2 className="section-title">Reliable work. Strong communication. Clean finished results.</h2>
+                <p className="section-kicker">About JNK</p>
+                <h2 className="section-title">Dependable workmanship with a local, residential feel</h2>
                 <p>
-                  JNK Contracting focuses on practical, well-built outdoor improvements for residential and vacation properties. The site should make that immediately clear through strong photos, clean structure, and straightforward messaging.
+                  JNK Contracting is built around the kind of outdoor construction work that matters
+                  most to homeowners in the Deep Creek area - practical improvements, solid craftsmanship,
+                  and finished results that look like they belong on the property.
                 </p>
-                <div className="about-grid">
-                  <article className="about-mini">
-                    <h3>Built for mountain terrain</h3>
-                    <p>Decks, slopes, walls, access work, and outdoor spaces designed for Deep Creek-area properties.</p>
-                  </article>
-                  <article className="about-mini">
-                    <h3>Residential first</h3>
-                    <p>The branding should feel like cabins, timber, stone, decks, and outdoor living - not generic commercial construction.</p>
-                  </article>
+
+                <div className="highlights-grid">
+                  {highlights.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <article key={item.title} className="highlight-card">
+                        <div className="highlight-icon">
+                          <Icon size={20} />
+                        </div>
+                        <h3>{item.title}</h3>
+                        <p>{item.text}</p>
+                      </article>
+                    );
+                  })}
                 </div>
               </div>
 
               <div id="contact" className="contact-panel">
-                <p className="section-kicker">Contact Us</p>
-                <h2 className="section-title">Let’s talk about your project</h2>
-                <p>Replace these placeholders with Jace’s real information before launch.</p>
+                <p className="section-kicker">Contact</p>
+                <h2 className="section-title">Talk through your project</h2>
+                <p>
+                  Need help with an outdoor project, slope issue, retaining wall, deck work, or a
+                  cabin property improvement? Reach out to JNK Contracting to start the conversation.
+                </p>
 
                 <div className="contact-list">
                   <div className="contact-item">
                     <Phone size={18} className="contact-icon" />
                     <div>
                       <strong>Call or Text</strong>
-                      <p>(301) 000-0000</p>
+                      <p>{phoneDisplay}</p>
                     </div>
                   </div>
+
                   <div className="contact-item">
                     <Mail size={18} className="contact-icon" />
                     <div>
                       <strong>Email</strong>
-                      <p>jace@jnk-contracting.com</p>
+                      <p>{emailDisplay}</p>
                     </div>
                   </div>
+
                   <div className="contact-item">
                     <MapPin size={18} className="contact-icon" />
                     <div>
                       <strong>Service Area</strong>
-                      <p>Deep Creek Lake, Garrett County, and nearby areas</p>
+                      <p>Deep Creek Lake, Garrett County, and surrounding areas</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="contact-actions">
-                  <a href="tel:+13010000000" className="contact-primary">
+                  <a href={phoneHref} className="contact-primary">
                     <Phone size={16} />
                     Call Now
                   </a>
-                  <a href="mailto:jace@jnk-contracting.com" className="contact-secondary">
+                  <a href={emailHref} className="contact-secondary">
                     <Mail size={16} />
                     Email JNK
                   </a>
@@ -912,6 +1074,15 @@ export default function App() {
             </div>
           </section>
         </main>
+
+        <footer className="footer">
+          <div className="container footer-inner">
+            <p>© {new Date().getFullYear()} JNK Contracting. All rights reserved.</p>
+            <p>
+              Serving <a href="#contact">Deep Creek Lake and Garrett County</a>
+            </p>
+          </div>
+        </footer>
       </div>
     </>
   );
