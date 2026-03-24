@@ -1,102 +1,88 @@
-import { motion } from 'framer-motion';
-import {
-  Phone,
-  Hammer,
-  Mountain,
-  BadgeCheck,
-  Mail,
-  MapPin,
-  Trees,
-  ShieldCheck,
-  ChevronRight,
-  Menu,
-  X,
-} from 'lucide-react';
 import { useState } from 'react';
+import { Menu, X, Phone, Mail, MapPin, Hammer, Trees, Mountain, Flame } from 'lucide-react';
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const navLinks = [
+    { label: 'Home', href: '#home' },
+    { label: 'Services', href: '#services' },
+    { label: 'Projects', href: '#projects' },
+    { label: 'About', href: '#about' },
+    { label: 'Contact', href: '#contact' },
+  ];
+
   const services = [
     {
       title: 'Deck Construction & Repair',
-      text: 'New builds, structural repairs, resurfacing, and upgrades designed for mountain homes and vacation properties.',
+      text: 'New builds, structural repairs, resurfacing, and outdoor upgrades designed for cabins, vacation homes, and mountain properties.',
       icon: Hammer,
     },
     {
       title: 'Retaining Walls & Grading',
-      text: 'Slope management, drainage-minded grading, and retaining wall solutions built for steep Deep Creek terrain.',
+      text: 'Slope management, drainage-minded grading, and retaining wall work built for the steep terrain common around Deep Creek.',
       icon: Mountain,
     },
     {
       title: 'Excavation & Site Prep',
-      text: 'Clearing, prep work, groundwork, and project-ready site shaping for outdoor improvements and new installations.',
+      text: 'Clearing, groundwork, access improvements, and site preparation for property upgrades and outdoor construction projects.',
       icon: Trees,
     },
     {
       title: 'Fire Pits & Outdoor Living',
-      text: 'Gathering spaces, hardscape features, and custom outdoor areas that feel finished, practical, and built to last.',
-      icon: BadgeCheck,
+      text: 'Patios, gathering areas, hardscape features, and outdoor spaces that feel warm, finished, and built to last.',
+      icon: Flame,
     },
   ];
 
   const projects = [
     {
-      src: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80',
-      title: 'Featured Mountain Property Project',
-      tag: 'Showcase project',
-      description: 'Replace this with your strongest Castle Creek Lodge image so the site immediately feels high-end and local.',
+      src: 'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1600&q=80',
+      title: 'Featured Mountain Home Project',
+      description: 'Swap this first image with the strongest Castle Creek Lodge exterior or outdoor project shot.',
     },
     {
       src: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80',
-      title: 'Decks, Timber, and Outdoor Spaces',
-      tag: 'Deep Creek style',
-      description: 'Use warm, rustic property photos that feel like cabins, lodges, and mountain homes - not commercial jobsites.',
+      title: 'Cabin-Style Decks & Outdoor Spaces',
+      description: 'Use warm residential photos that feel rustic, local, and built for mountain living.',
     },
     {
       src: 'https://images.unsplash.com/photo-1448630360428-65456885c650?auto=format&fit=crop&w=1600&q=80',
-      title: 'Grading, Access, and Improvements',
-      tag: 'Property improvements',
-      description: 'Add another strong exterior project image that shows terrain work, outdoor upgrades, or finished craftsmanship.',
+      title: 'Grading, Access, and Property Improvements',
+      description: 'Show terrain work, outdoor upgrades, and clean finished craftsmanship.',
     },
   ];
 
-  const highlights = [
-    'Serving Deep Creek Lake, Garrett County, and nearby areas',
-    'Responsive estimates and clear communication',
-    'Built for mountain homes, vacation rentals, and outdoor living',
-  ];
-
-  const fadeUp = {
-    hidden: { opacity: 0, y: 24 },
-    visible: { opacity: 1, y: 0 },
-  };
-
   return (
-    <div className="min-h-screen bg-stone-950 text-white">
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-stone-950/90 backdrop-blur">
+    <div className="min-h-screen bg-stone-100 text-stone-900">
+      <header className="sticky top-0 z-50 border-b border-stone-200 bg-[#f7f2e8]/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-6 lg:px-8">
-          <a href="#top" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-amber-600/90 text-white shadow-lg shadow-amber-700/20">
+          <a href="#home" className="flex items-center gap-3">
+            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#7b5b39] text-white shadow-sm">
               <Hammer size={18} />
             </div>
             <div>
-              <p className="text-sm font-semibold tracking-[0.22em] text-amber-300">JNK CONTRACTING</p>
-              <p className="text-xs text-stone-400">Deep Creek area contractor</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#7b5b39]">JNK Contracting</p>
+              <p className="text-xs text-stone-500">Deep Creek area contractor</p>
             </div>
           </a>
 
           <nav className="hidden items-center gap-8 lg:flex">
-            <a href="#services" className="text-sm text-stone-300 transition hover:text-white">Services</a>
-            <a href="#projects" className="text-sm text-stone-300 transition hover:text-white">Projects</a>
-            <a href="#about" className="text-sm text-stone-300 transition hover:text-white">About</a>
-            <a href="#contact" className="text-sm text-stone-300 transition hover:text-white">Contact</a>
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="text-sm font-medium text-stone-700 transition hover:text-[#7b5b39]"
+              >
+                {link.label}
+              </a>
+            ))}
           </nav>
 
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex lg:items-center lg:gap-3">
             <a
               href="tel:+13010000000"
-              className="inline-flex items-center gap-2 rounded-2xl bg-amber-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-amber-500"
+              className="inline-flex items-center gap-2 rounded-full border border-[#7b5b39] px-5 py-2.5 text-sm font-semibold text-[#7b5b39] transition hover:bg-[#7b5b39] hover:text-white"
             >
               <Phone size={16} />
               Call for a Quote
@@ -106,7 +92,7 @@ export default function App() {
           <button
             type="button"
             onClick={() => setMenuOpen((v) => !v)}
-            className="inline-flex rounded-xl border border-white/10 p-2 text-stone-200 lg:hidden"
+            className="inline-flex rounded-xl border border-stone-300 bg-white p-2 text-stone-700 lg:hidden"
             aria-label="Toggle menu"
           >
             {menuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -114,16 +100,22 @@ export default function App() {
         </div>
 
         {menuOpen && (
-          <div className="border-t border-white/10 bg-stone-950 lg:hidden">
-            <div className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-4 sm:px-6">
-              <a href="#services" onClick={() => setMenuOpen(false)} className="rounded-xl px-3 py-3 text-stone-300 hover:bg-white/5 hover:text-white">Services</a>
-              <a href="#projects" onClick={() => setMenuOpen(false)} className="rounded-xl px-3 py-3 text-stone-300 hover:bg-white/5 hover:text-white">Projects</a>
-              <a href="#about" onClick={() => setMenuOpen(false)} className="rounded-xl px-3 py-3 text-stone-300 hover:bg-white/5 hover:text-white">About</a>
-              <a href="#contact" onClick={() => setMenuOpen(false)} className="rounded-xl px-3 py-3 text-stone-300 hover:bg-white/5 hover:text-white">Contact</a>
+          <div className="border-t border-stone-200 bg-[#f7f2e8] lg:hidden">
+            <div className="mx-auto flex max-w-7xl flex-col px-5 py-4 sm:px-6">
+              {navLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="rounded-xl px-3 py-3 text-sm font-medium text-stone-700 hover:bg-white hover:text-[#7b5b39]"
+                >
+                  {link.label}
+                </a>
+              ))}
               <a
                 href="tel:+13010000000"
                 onClick={() => setMenuOpen(false)}
-                className="mt-2 inline-flex items-center justify-center gap-2 rounded-2xl bg-amber-600 px-5 py-3 text-sm font-semibold text-white"
+                className="mt-3 inline-flex items-center justify-center gap-2 rounded-full bg-[#7b5b39] px-5 py-3 text-sm font-semibold text-white"
               >
                 <Phone size={16} />
                 Call for a Quote
@@ -133,255 +125,188 @@ export default function App() {
         )}
       </header>
 
-      <main id="top">
-        <section className="relative isolate overflow-hidden border-b border-white/10">
-          <div className="absolute inset-0">
-            <img
-              src={projects[0].src}
-              alt="Mountain home construction"
-              className="h-full w-full object-cover opacity-40"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-stone-950 via-stone-950/85 to-stone-950/55" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(245,158,11,0.16),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.05),transparent_22%)]" />
-          </div>
+      <main id="home">
+        <section className="relative overflow-hidden bg-stone-900">
+          <img
+            src={projects[0].src}
+            alt="Mountain cabin project"
+            className="absolute inset-0 h-full w-full object-cover opacity-45"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-stone-950/85 via-stone-950/65 to-stone-950/40" />
 
-          <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-6 sm:py-20 lg:grid-cols-[1.05fr,0.95fr] lg:px-8 lg:py-24">
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={fadeUp}
-              transition={{ duration: 0.5 }}
-              className="max-w-3xl"
-            >
-              <div className="mb-5 inline-flex rounded-full border border-amber-400/25 bg-amber-500/10 px-4 py-2 text-xs font-medium tracking-wide text-amber-200 sm:text-sm">
-                Quality outdoor construction for mountain homes and vacation properties
-              </div>
-
-              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-                Deep Creek-style craftsmanship that looks right and lasts.
-              </h1>
-
-              <p className="mt-5 max-w-2xl text-base leading-7 text-stone-300 sm:text-lg sm:leading-8">
-                JNK Contracting delivers decks, grading, retaining walls, excavation, and outdoor living improvements built for the unique terrain and character of Garrett County properties.
+          <div className="relative mx-auto max-w-7xl px-5 py-24 sm:px-6 sm:py-28 lg:px-8 lg:py-36">
+            <div className="max-w-3xl">
+              <p className="mb-5 inline-block rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-stone-100">
+                Quality work for cabins, vacation homes, and mountain properties
               </p>
-
+              <h1 className="text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
+                Building trust with quality work around Deep Creek.
+              </h1>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-stone-200">
+                JNK Contracting delivers decks, grading, retaining walls, excavation, and outdoor living improvements with the kind of craftsmanship local homeowners want to feel confident hiring.
+              </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
                   href="#projects"
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-amber-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-amber-500"
+                  className="inline-flex items-center justify-center rounded-full bg-[#c8ad72] px-6 py-3 text-sm font-semibold text-stone-950 transition hover:bg-[#d7bb7d]"
                 >
-                  View Projects
-                  <ChevronRight size={16} />
+                  View Recent Work
                 </a>
                 <a
                   href="#contact"
-                  className="inline-flex items-center justify-center rounded-2xl border border-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/5"
+                  className="inline-flex items-center justify-center rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
                 >
                   Get a Free Estimate
                 </a>
               </div>
-
-              <div className="mt-8 grid gap-3 sm:grid-cols-3">
-                {highlights.map((item) => (
-                  <div key={item} className="rounded-2xl border border-white/10 bg-black/20 p-4 backdrop-blur-sm">
-                    <p className="text-sm leading-6 text-stone-200">{item}</p>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={fadeUp}
-              transition={{ duration: 0.5, delay: 0.12 }}
-              className="grid gap-4 self-end sm:grid-cols-2 lg:grid-cols-1"
-            >
-              <div className="rounded-[28px] border border-white/10 bg-stone-900/75 p-6 shadow-2xl shadow-black/30 backdrop-blur">
-                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-300">Built for local terrain</p>
-                <h2 className="mt-3 text-2xl font-bold">Decks, slopes, walls, and outdoor spaces with mountain property experience.</h2>
-                <p className="mt-3 text-sm leading-6 text-stone-300">
-                  This site should feel local, warm, and residential - like cabins, vacation homes, timber, stone, and outdoor gathering spaces.
-                </p>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        <section id="services" className="mx-auto max-w-7xl px-5 py-14 sm:px-6 sm:py-16 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={fadeUp}
-            transition={{ duration: 0.45 }}
-            className="max-w-2xl"
-          >
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-300">Services</p>
-            <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Professional work tailored to Deep Creek properties</h2>
-            <p className="mt-4 text-stone-300">
-              Focus the message on the work homeowners actually care about: quality, durability, clean results, and a contractor who understands the property type.
-            </p>
-          </motion.div>
-
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            {services.map((service, index) => {
-              const Icon = service.icon;
-              return (
-                <motion.div
-                  key={service.title}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.15 }}
-                  variants={fadeUp}
-                  transition={{ duration: 0.4, delay: index * 0.06 }}
-                  className="rounded-[28px] border border-white/10 bg-stone-900/70 p-6 shadow-lg shadow-black/20"
-                >
-                  <div className="mb-4 inline-flex rounded-2xl bg-amber-500/15 p-3 text-amber-300">
-                    <Icon size={22} />
-                  </div>
-                  <h3 className="text-xl font-semibold">{service.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-stone-400">{service.text}</p>
-                </motion.div>
-              );
-            })}
-          </div>
-        </section>
-
-        <section id="projects" className="border-y border-white/10 bg-stone-900/40">
-          <div className="mx-auto max-w-7xl px-5 py-14 sm:px-6 sm:py-16 lg:px-8">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              variants={fadeUp}
-              transition={{ duration: 0.45 }}
-              className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between"
-            >
-              <div className="max-w-2xl">
-                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-300">Projects</p>
-                <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Lead with warm, residential, mountain-home visuals</h2>
-                <p className="mt-4 text-stone-300">
-                  Swap out the placeholders with cabin, deck, grading, fire pit, and property-improvement photos. Lead with Castle Creek Lodge if that is the strongest first impression.
-                </p>
-              </div>
-            </motion.div>
-
-            <div className="mt-8 grid gap-5 lg:grid-cols-3">
-              {projects.map((project, index) => (
-                <motion.article
-                  key={project.title}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.15 }}
-                  variants={fadeUp}
-                  transition={{ duration: 0.4, delay: index * 0.07 }}
-                  className="group overflow-hidden rounded-[30px] border border-white/10 bg-stone-950"
-                >
-                  <div className="overflow-hidden">
-                    <img
-                      src={project.src}
-                      alt={project.title}
-                      className="h-72 w-full object-cover transition duration-500 group-hover:scale-[1.03]"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-300">{project.tag}</p>
-                    <h3 className="mt-2 text-2xl font-semibold">{project.title}</h3>
-                    <p className="mt-3 text-sm leading-6 text-stone-400">{project.description}</p>
-                  </div>
-                </motion.article>
-              ))}
             </div>
           </div>
         </section>
 
-        <section id="about" className="mx-auto max-w-7xl px-5 py-14 sm:px-6 sm:py-16 lg:px-8">
-          <div className="grid gap-5 lg:grid-cols-[1.05fr,0.95fr]">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              variants={fadeUp}
-              transition={{ duration: 0.45 }}
-              className="rounded-[30px] border border-white/10 bg-stone-900/70 p-6 sm:p-8"
+        <section className="bg-[#d8c183] px-5 py-14 text-center sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl">
+            <h2 className="text-3xl font-medium sm:text-4xl">Professional outdoor construction with a residential, mountain-home focus</h2>
+            <p className="mt-4 text-lg text-stone-700">
+              Deep Creek properties need more than generic contractor work - they need solutions built for slopes, weather, timber, stone, decks, and outdoor gathering spaces.
+            </p>
+            <a
+              href="#services"
+              className="mt-8 inline-flex items-center justify-center rounded-full border border-stone-700 px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-stone-800 transition hover:bg-stone-800 hover:text-white"
             >
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-300">About JNK Contracting</p>
-              <h2 className="mt-3 text-3xl font-bold">Reliable work. Strong communication. Clean finished results.</h2>
-              <p className="mt-5 text-base leading-8 text-stone-300">
-                JNK Contracting focuses on practical, well-built outdoor improvements for residential and vacation properties. The goal of this site is to show quality work, local credibility, and the kind of craftsmanship homeowners want to feel confident hiring.
-              </p>
+              Explore Services
+            </a>
+          </div>
+        </section>
 
-              <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                <div className="rounded-2xl border border-white/10 bg-black/20 p-5">
-                  <ShieldCheck className="text-amber-300" size={22} />
-                  <p className="mt-3 font-semibold">Professional and dependable</p>
-                  <p className="mt-2 text-sm leading-6 text-stone-400">Position the brand around responsiveness, trust, and getting the details right.</p>
+        <section id="services" className="bg-white px-5 py-16 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <div className="max-w-2xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#7b5b39]">Services</p>
+              <h2 className="mt-3 text-3xl font-medium sm:text-4xl">What JNK Contracting does best</h2>
+              <p className="mt-4 text-lg leading-8 text-stone-600">
+                Keep this section clean and straightforward. Homeowners want to quickly understand the kind of work you do and whether you look like the right fit for their property.
+              </p>
+            </div>
+
+            <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+              {services.map((service) => {
+                const Icon = service.icon;
+                return (
+                  <div key={service.title} className="rounded-3xl border border-stone-200 bg-stone-50 p-6 shadow-sm">
+                    <div className="mb-4 inline-flex rounded-2xl bg-[#efe3cc] p-3 text-[#7b5b39]">
+                      <Icon size={22} />
+                    </div>
+                    <h3 className="text-xl font-semibold">{service.title}</h3>
+                    <p className="mt-3 text-sm leading-7 text-stone-600">{service.text}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section id="projects" className="bg-stone-100 px-5 py-16 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <div className="max-w-2xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#7b5b39]">Recent Work</p>
+              <h2 className="mt-3 text-3xl font-medium sm:text-4xl">Residential cabin-style visuals that feel local and credible</h2>
+              <p className="mt-4 text-lg leading-8 text-stone-600">
+                Use real project photos here as soon as possible. Lead with Castle Creek Lodge if that is the strongest visual. Avoid generic commercial imagery.
+              </p>
+            </div>
+
+            <div className="mt-10 grid gap-6 lg:grid-cols-[1.25fr,0.75fr]">
+              <article className="overflow-hidden rounded-[32px] bg-white shadow-sm">
+                <img src={projects[0].src} alt={projects[0].title} className="h-[420px] w-full object-cover" />
+                <div className="p-7">
+                  <h3 className="text-2xl font-semibold">{projects[0].title}</h3>
+                  <p className="mt-3 text-base leading-7 text-stone-600">{projects[0].description}</p>
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-black/20 p-5">
-                  <MapPin className="text-amber-300" size={22} />
-                  <p className="mt-3 font-semibold">Built for Deep Creek properties</p>
-                  <p className="mt-2 text-sm leading-6 text-stone-400">Mountain terrain, cabins, decks, retaining walls, grading, and outdoor living spaces.</p>
+              </article>
+
+              <div className="grid gap-6">
+                {projects.slice(1).map((project) => (
+                  <article key={project.title} className="overflow-hidden rounded-[32px] bg-white shadow-sm">
+                    <img src={project.src} alt={project.title} className="h-56 w-full object-cover" />
+                    <div className="p-6">
+                      <h3 className="text-xl font-semibold">{project.title}</h3>
+                      <p className="mt-3 text-sm leading-7 text-stone-600">{project.description}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="about" className="bg-white px-5 py-16 sm:px-6 lg:px-8">
+          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr,0.95fr]">
+            <div className="rounded-[32px] bg-stone-50 p-8">
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#7b5b39]">About</p>
+              <h2 className="mt-3 text-3xl font-medium sm:text-4xl">Reliable work. Strong communication. Clean finished results.</h2>
+              <p className="mt-5 text-lg leading-8 text-stone-600">
+                JNK Contracting focuses on practical, well-built outdoor improvements for residential and vacation properties. The site should make that immediately clear through strong photos, clean structure, and straightforward messaging.
+              </p>
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                <div className="rounded-3xl border border-stone-200 bg-white p-5">
+                  <p className="font-semibold text-stone-900">Built for mountain terrain</p>
+                  <p className="mt-2 text-sm leading-7 text-stone-600">Decks, slopes, walls, access work, and outdoor spaces designed for Deep Creek-area properties.</p>
+                </div>
+                <div className="rounded-3xl border border-stone-200 bg-white p-5">
+                  <p className="font-semibold text-stone-900">Residential first</p>
+                  <p className="mt-2 text-sm leading-7 text-stone-600">The branding should feel like cabins, timber, stone, decks, and outdoor living - not generic commercial construction.</p>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              id="contact"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              variants={fadeUp}
-              transition={{ duration: 0.45, delay: 0.05 }}
-              className="rounded-[30px] border border-amber-400/20 bg-gradient-to-br from-amber-500/15 to-amber-500/5 p-6 sm:p-8"
-            >
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-200">Contact</p>
-              <h2 className="mt-3 text-3xl font-bold">Get a Free Estimate</h2>
-              <p className="mt-4 text-stone-200">
-                Replace these placeholders with Jace’s actual information before launch.
+            <div id="contact" className="rounded-[32px] bg-[#f3ead8] p-8">
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#7b5b39]">Contact Us</p>
+              <h2 className="mt-3 text-3xl font-medium sm:text-4xl">Let’s talk about your project</h2>
+              <p className="mt-4 text-lg leading-8 text-stone-700">
+                Replace these placeholders with Jace’s real information before launch.
               </p>
 
-              <div className="mt-6 space-y-4 text-sm sm:text-base">
-                <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-black/15 p-4">
-                  <Phone size={18} className="mt-0.5 text-amber-300" />
+              <div className="mt-8 space-y-4">
+                <div className="flex items-start gap-4 rounded-3xl bg-white p-5">
+                  <Phone size={18} className="mt-1 text-[#7b5b39]" />
                   <div>
                     <p className="font-semibold">Call or Text</p>
-                    <p className="text-stone-300">(301) 000-0000</p>
+                    <p className="text-stone-600">(301) 000-0000</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-black/15 p-4">
-                  <Mail size={18} className="mt-0.5 text-amber-300" />
+                <div className="flex items-start gap-4 rounded-3xl bg-white p-5">
+                  <Mail size={18} className="mt-1 text-[#7b5b39]" />
                   <div>
                     <p className="font-semibold">Email</p>
-                    <p className="text-stone-300">jace@jnk-contracting.com</p>
+                    <p className="text-stone-600">jace@jnk-contracting.com</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-black/15 p-4">
-                  <MapPin size={18} className="mt-0.5 text-amber-300" />
+                <div className="flex items-start gap-4 rounded-3xl bg-white p-5">
+                  <MapPin size={18} className="mt-1 text-[#7b5b39]" />
                   <div>
                     <p className="font-semibold">Service Area</p>
-                    <p className="text-stone-300">Deep Creek Lake, Garrett County, and nearby areas</p>
+                    <p className="text-stone-600">Deep Creek Lake, Garrett County, and nearby areas</p>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
                   href="tel:+13010000000"
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-6 py-3 text-sm font-semibold text-stone-950 transition hover:bg-stone-100"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-[#7b5b39] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#684b2e]"
                 >
-                  <Phone size={18} />
+                  <Phone size={16} />
                   Call Now
                 </a>
                 <a
                   href="mailto:jace@jnk-contracting.com"
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/5"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-[#7b5b39] px-6 py-3 text-sm font-semibold text-[#7b5b39] transition hover:bg-[#7b5b39] hover:text-white"
                 >
-                  <Mail size={18} />
+                  <Mail size={16} />
                   Email JNK
                 </a>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
       </main>
